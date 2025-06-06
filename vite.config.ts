@@ -4,6 +4,7 @@ import { defineConfig, type ViteDevServer } from 'vite';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import { optimizeCssModules } from 'vite-plugin-optimize-css-modules';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { componentTagger } from 'lovable-tagger';
 import * as dotenv from 'dotenv';
 import { execSync } from 'child_process';
 import { readFileSync } from 'fs';
@@ -74,6 +75,7 @@ const gitInfo = getGitInfo();
 export default defineConfig((config) => {
   return {
     server: {
+      host: "::",
       port: 8080,
     },
     define: {
@@ -132,9 +134,10 @@ export default defineConfig((config) => {
       }),
       UnoCSS(),
       tsconfigPaths(),
+      config.mode === 'development' && componentTagger(),
       chrome129IssuePlugin(),
       config.mode === 'production' && optimizeCssModules({ apply: 'build' }),
-    ],
+    ].filter(Boolean),
     envPrefix: [
       'VITE_',
       'OPENAI_LIKE_API_BASE_URL',
