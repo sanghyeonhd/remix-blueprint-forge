@@ -1,5 +1,5 @@
 
-import { Code2, Twitter, Github, Discord } from "lucide-react";
+import { Code2, Twitter, Github, MessageCircle } from "lucide-react";
 
 const Footer = () => {
   const footerLinks = {
@@ -34,7 +34,7 @@ const Footer = () => {
                 <Github className="w-5 h-5" />
               </a>
               <a href="#" className="text-slate-400 hover:text-white transition-colors">
-                <Discord className="w-5 h-5" />
+                <MessageCircle className="w-5 h-5" />
               </a>
             </div>
           </div>
